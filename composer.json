@@ -1,0 +1,25 @@
+{
+    "name": "blimp/blimp-render",
+    "type": "library",
+    "description": "Blimp framework",
+    "license": "LGPL-3.0+",
+    "authors": [
+        {
+            "name": "Nelson Antunes",
+            "email": "nelson.antunes@gmail.com",
+            "homepage": "http://nantunes.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "blimp/blimp-http": "@dev",
+        "symfony/templating": "3.0.*@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Blimp\\Render\\": "src"
+        }
+    },
+    "minimum-stability": "dev",
+    "repositories": [ { "type": "composer", "url": "http://packages.nantunes.net/" } ]
+}
