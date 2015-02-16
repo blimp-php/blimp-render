@@ -3,20 +3,25 @@ namespace Blimp\Render\Rest;
 
 use Pimple\Container;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Templating\Helper\SlotsHelper;
-use Symfony\Component\Templating\Loader\FilesystemLoader;
-use Symfony\Component\Templating\PhpEngine;
-use Symfony\Component\Templating\TemplateNameParser;
+use Symfony\Component\HttpFoundation\Response;
 
 class Template {
-    public function process(Container $api, Request $request, $_template) {
-        $loader = new FilesystemLoader($api['render.templates.dir'] . '/%name%');
-
-        $templating = new PhpEngine(new TemplateNameParser(), $loader);
-        $templating->set(new SlotsHelper());
-
+    public function process(Container $api, Request $request, $_view, $_model = null) {
         $data = [];
 
-        echo $templating->render($_template, $data);
+        if(!empty($_model)) {
+            $c = new \ReflectionClass($_model);
+            $m = $c->newInstance();
+
+            $data = $m->process($api, $request, $_view);
+        }
+
+        $response = new Response(
+            $api['render.engine']->render($_view, $data),
+            Response::HTTP_OK,
+            array('content-type' => 'text/html')
+        );
+
+        return $response;
     }
 }

@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "blimp/blimp-http": "@dev",
+        "php": ">=5.4.0",
+        "blimp/blimp-http": "1.0.*",
         "symfony/templating": "2.0.*@dev"
     },
     "autoload": {
@@ -20,11 +21,11 @@
             "Blimp\\Render\\": "src"
         }
     },
-    "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
     },
+    "minimum-stability": "dev",
     "repositories": [ { "type": "composer", "url": "http://packages.nantunes.net/" } ]
 }
