@@ -14,7 +14,7 @@ class RenderServiceProvider implements ServiceProviderInterface {
         $api['render.templates.cache'] = __DIR__;
 
         $api['render.loader'] = function ($api) {
-            return new FilesystemLoader($api['render.templates.dir'] . '/%name%');
+            return new FilesystemLoader($api['render.templates.dir'] . '/%name%.php');
         };
 
         $api['render.engine'] = function ($api) {
