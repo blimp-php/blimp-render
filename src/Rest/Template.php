@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Template {
     public function process(Container $api, Request $request, $_view, $_model = null) {
-        $data = [];
+        $data = null;
 
         if(!empty($_model)) {
             $c = new \ReflectionClass($_model);
@@ -17,7 +17,7 @@ class Template {
         }
 
         $response = new Response(
-            $api['render.engine']->render($_view, $data),
+            $api['render.engine']->render($_view, $data !== null ? $data : []),
             Response::HTTP_OK,
             array('content-type' => 'text/html')
         );
