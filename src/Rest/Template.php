@@ -6,14 +6,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class Template {
-    public function process(Container $api, Request $request, $_view, $_model = null) {
+    public function process(Container $api, Request $request, $_view, $_model = null, $_route_params = null) {
         $data = null;
 
         if(!empty($_model)) {
             $c = new \ReflectionClass($_model);
             $m = $c->newInstance();
 
-            $data = $m->process($api, $request, $_view);
+            $data = $m->process($api, $request, $_view, $_route_params);
         }
 
         $response = new Response(
